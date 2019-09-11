@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/userDb", {
+mongoose.connect("mongodb://localhost/usersDb", {
   useCreateIndex: true,
   useNewUrlParser: true,
 });
