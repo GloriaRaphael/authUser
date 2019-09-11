@@ -2,20 +2,24 @@ var express = require("express");
 var mongoose = require("mongoose");
 
 //PATHS
-var dbconfig = require("./config/db.config");
-var signUp = require("./route/userRoutes");
+require("./config/db.config");
+var routes = require("./routes");
 
 var port = process.env.PORT || 3000;
 
 var app = express();
 
-app.use("/api", (req, res) => {
-  res.send(
-    "<h1>Welcome to Trigger. Building habits, one trigger at a time!</h1><html><head><titile></titile></head></head></html>"
-  );
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.post("/api/signup", signUp);
+app.use("/api", routes(express.Router()));
+
+app.use((err, req, res, next) => {
+  res.status(500).send({
+    message: "sorry an error occured",
+    data: err,
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
