@@ -2,7 +2,7 @@ var userModel = require("../model/users");
 var confirm = require("./index");
 
 function userController() {
-  this.signUp = function(req, res) {
+  this.signUp = (req, res) => {
     var userDetail = new userModel({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -17,9 +17,7 @@ function userController() {
     });
   };
 
-  this.signIn = function (req, res) {
-    
-  }
+  this.signIn = function(req, res) {};
 }
 
 module.exports = userController;
